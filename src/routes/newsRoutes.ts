@@ -1,6 +1,6 @@
 import express, { Request, Response, RequestHandler } from 'express';
 import dotenv from 'dotenv';
-import NewsAPI from 'newsapi';
+import NewsAPI from 'ts-newsapi';
 import { callChatGPTAPI } from '../services/chatGptService';
 import jwt from 'jsonwebtoken';
 import User from '../models/user';
@@ -51,7 +51,7 @@ const climateNewsRouter: RequestHandler = async (req: Request, res: Response): P
 
   try {
     // Fazendo a chamada à API para pegar as notícias com base nas palavras-chave e fonte
-    const response = await newsapi.v2.everything({
+    const response = await newsapi.getEverything({
       q: keywords, // Termos de busca fornecidos pelo usuário
       domains: source, // Fonte fornecida pelo usuário
       pageSize: 3, // Limitar a 3 notícias

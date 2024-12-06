@@ -23,7 +23,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.3",
     "newsapi": "^2.4.1",
-    "openai": "^4.75.0"
+    "openai": "^4.75.0",
+    "ts-newsapi": "^1.0.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
