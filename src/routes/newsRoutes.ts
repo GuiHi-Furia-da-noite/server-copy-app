@@ -1,6 +1,6 @@
 import express, { Request, Response, RequestHandler } from 'express';
 import dotenv from 'dotenv';
-import NewsAPI from 'ts-newsapi';
+import axios from 'axios'; // Para fazer as requisições HTTP
 import { callChatGPTAPI } from '../services/chatGptService';
 import jwt from 'jsonwebtoken';
 import User from '../models/user';
@@ -14,9 +14,6 @@ if (!apiKey) {
 }
 
 const router = express.Router(); // Definindo o router para rotas específicas
-
-// Criando a instância da API com a chave da NewsAPI
-const newsapi = new NewsAPI(apiKey);
 
 // Função para verificar o token JWT e obter o usuário
 const getUserFromToken = (token: string): string | null => {
@@ -50,18 +47,15 @@ const climateNewsRouter: RequestHandler = async (req: Request, res: Response): P
   }
 
   try {
-    // Fazendo a chamada à API para pegar as notícias com base nas palavras-chave e fonte
-    const response = await newsapi.getEverything({
-      q: keywords, // Termos de busca fornecidos pelo usuário
-      domains: source, // Fonte fornecida pelo usuário
-      pageSize: 3, // Limitar a 3 notícias
-      language: 'pt' // Filtrar por idioma português
-    });
+    // Fazendo a chamada para a NewsAPI diretamente
+    const newsApiUrl = `https://newsapi.org/v2/everything?q=${keywords}&domains=${source}&apiKey=${apiKey}&language=pt&pageSize=3`;
 
-    if (response.articles && response.articles.length > 0) {
+    const response = await axios.get(newsApiUrl);
+
+    if (response.data.articles && response.data.articles.length > 0) {
       // Selecionando uma notícia aleatória
-      const randomIndex = Math.floor(Math.random() * response.articles.length);
-      const selectedArticle = response.articles[randomIndex];
+      const randomIndex = Math.floor(Math.random() * response.data.articles.length);
+      const selectedArticle = response.data.articles[randomIndex];
 
       // Criando o prompt para enviar ao ChatGPT com a notícia aleatória
       const prompt = `
@@ -118,9 +112,9 @@ A resposta deve ser organizada como segue:
 }
 Texto da Notícia: Inclua aqui as informações de título, descrição e conteúdo da notícia para serem utilizadas no desenvolvimento das páginas.
 {
-  "Titulo": "${response.articles[0].title}",
-  "Descrição": "${response.articles[0].description}",
-  "Content": "${response.articles[0].content}"
+  "Titulo": "${selectedArticle.title}",
+  "Descrição": "${selectedArticle.description}",
+  "Content": "${selectedArticle.content}"
 }
       `;
 
