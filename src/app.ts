@@ -17,6 +17,11 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
+// Adicionando a rota para a raiz (/)
+app.get('/', (req, res) => {
+  res.send('Servidor funcionando!');
+});
+
 // Rotas
 app.use('/api/auth', authRoutes);
 app.use('/api/news', climateNewsRouter); // Para as notícias
