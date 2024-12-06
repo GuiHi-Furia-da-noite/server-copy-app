@@ -1,4 +1,3 @@
-Aqui está a documentação para o seu projeto no arquivo `README.md`:
 
 ```markdown
 # Copy-App Backend
