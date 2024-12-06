@@ -2,13 +2,20 @@ curl -X POST http://localhost:3000/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{"username": "GuiHi", "email": "guihi@fieldpro.com.br", "password": "fieldpro"}'
 
+  curl -X POST https://server-copy-app.vercel.app/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"username": "GuiHi", "email": "guihi@fieldpro.com.br", "password": "fieldpro"}'
 
-curl -X POST http://localhost:3000/api/auth/login \
+curl -X POST https://server-copy-app.vercel.app/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "guihi@fieldpro.com.br", "password": "fieldpro"}'
+
+  curl -X POST http://localhost:3000/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email": "guihi@fieldpro.com.br", "password": "fieldpro"}'
 
 curl -X POST http://localhost:3000/api/news/climate-news \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTIxMDIwZWExYTFjOWQ5YzE3ZGY4MSIsImlhdCI6MTczMzQ4MTIyNiwiZXhwIjoxNzMzNDg0ODI2fQ.mf5eTDu_FRVabb4FtgS1PNs1BmUzV7h6I8uz1F0rhBE" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTJmZjIxYTRkMmU3ZmQ3ZTY2M2QyNCIsImlhdCI6MTczMzQ5Mjk0MCwiZXhwIjoxNzMzNDk2NTQwfQ.6ZneSdq8YHxsXF4qPzkDczxX9BxLda4kZiD2VPPVClU" \
   -H "Content-Type: application/json" \
   -d '{
     "keywords": "clima+chuva",

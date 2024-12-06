@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 import climateNewsRouter from './routes/newsRoutes';
 import deletePublicationRoutes from './routes/deleteNews';
 import updateNewsRoutes from './routes/createNews';
+import generateNewsFromLink from './routes/linknews'
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/news', climateNewsRouter); // Para as notícias
 app.use('/api', deletePublicationRoutes); // Para excluir publicações
 app.use('/api', updateNewsRoutes); // Para atualizar publicações
+app.use('/api', generateNewsFromLink); // Para atualizar publicações
 
 // Conexão ao banco de dados
 connectDB();
