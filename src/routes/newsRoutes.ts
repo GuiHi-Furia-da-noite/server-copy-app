@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import NewsAPI from 'newsapi';
 import { callChatGPTAPI } from '../services/chatGptService';
 import jwt from 'jsonwebtoken';
-import User from '../models/user'; // Importando o modelo de usuário
+import User from '../models/user';
 
 dotenv.config(); // Carregar variáveis de ambiente
 
