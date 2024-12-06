@@ -1,2 +1,2 @@
-# .vercelignore
+node_modules/
 dist/

@@ -1,12 +1,13 @@
 import express, { Request, Response, RequestHandler } from 'express';
 import dotenv from 'dotenv';
-import NewsAPI from 'newsapi'; // Importando a biblioteca
+import NewsAPI from 'newsapi';
 import { callChatGPTAPI } from '../services/chatGptService';
 import jwt from 'jsonwebtoken';
 import User from '../models/user'; // Importando o modelo de usuário
 
 dotenv.config(); // Carregar variáveis de ambiente
 
+// Verificando se a chave da API está presente
 const apiKey = process.env.NEWS_API_KEY;
 if (!apiKey) {
   throw new Error('NEWS_API_KEY is not defined in the environment variables');
@@ -18,7 +19,7 @@ const router = express.Router(); // Definindo o router para rotas específicas
 const newsapi = new NewsAPI(apiKey);
 
 // Função para verificar o token JWT e obter o usuário
-const getUserFromToken = (token: string) => {
+const getUserFromToken = (token: string): string | null => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: string };
     return decoded.id;
@@ -64,8 +65,7 @@ const climateNewsRouter: RequestHandler = async (req: Request, res: Response): P
 
       // Criando o prompt para enviar ao ChatGPT com a notícia aleatória
       const prompt = `
-
-       Você é um assistente especializado na criação de publicações de múltiplas páginas, baseado nas notícias fornecidas. Crie uma publicação estruturada em 5 páginas com as seguintes características:
+Você é um assistente especializado na criação de publicações de múltiplas páginas, baseado nas notícias fornecidas. Crie uma publicação estruturada em 5 páginas com as seguintes características:
 Capa Inicial (Página 1):
 Título (Máximo 14 caracteres): Adapte o título para que se encaixe no limite de caracteres, mantendo o tema da notícia.
 Subtítulo curto (Máximo 18 caracteres): Resuma a essência da notícia em poucas palavras.
@@ -122,8 +122,6 @@ Texto da Notícia: Inclua aqui as informações de título, descrição e conte�
   "Descrição": "${response.articles[0].description}",
   "Content": "${response.articles[0].content}"
 }
-
-
       `;
 
       try {

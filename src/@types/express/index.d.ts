@@ -3,3 +3,6 @@ declare namespace Express {
     userId?: string;
   }
 }
+
+// src/@types/express/index.d.ts
+/// <reference path="./newsapi.d.ts" />
