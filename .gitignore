@@ -80,3 +80,4 @@ es/
 *.pem
 *.key
 *.crt
+.vercel
