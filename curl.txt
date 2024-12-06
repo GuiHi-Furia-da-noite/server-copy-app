@@ -1,0 +1,30 @@
+curl -X POST http://localhost:3000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"username": "GuiHi", "email": "guihi@fieldpro.com.br", "password": "fieldpro"}'
+
+curl -X POST http://localhost:3000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "guihi@fieldpro.com.br", "password": "fieldpro"}'
+
+curl -X POST http://localhost:3000/api/news/climate-news \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTIxMDIwZWExYTFjOWQ5YzE3ZGY4MSIsImlhdCI6MTczMzQ4MTIyNiwiZXhwIjoxNzMzNDg0ODI2fQ.mf5eTDu_FRVabb4FtgS1PNs1BmUzV7h6I8uz1F0rhBE" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "keywords": "clima+chuva",
+    "source": "uol.com.br"
+  }'
+
+
+curl -X DELETE http://localhost:3000/api/publication/6752d0c5d8ec1e0c24d16157 \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTIxMDIwZWExYTFjOWQ5YzE3ZGY4MSIsImlhdCI6MTczMzQ4MDQ2MCwiZXhwIjoxNzMzNDg0MDYwfQ.9GvftN1vS9BoyyRhpYzQXsoRYxNX-Ocoh8x-hV2f1Oo"
+
+
+curl -X PUT http://localhost:3000/api/publications/67521040ea1a1c9d9c17df84 \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTIxMDIwZWExYTFjOWQ5YzE3ZGY4MSIsImlhdCI6MTczMzQ4MDQ2MCwiZXhwIjoxNzMzNDg0MDYwfQ.9GvftN1vS9BoyyRhpYzQXsoRYxNX-Ocoh8x-hV2f1Oo" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "pageId": "Capa",
+    "field": "Title",
+    "value": "Novo Título Atualizado"
+  }'
+

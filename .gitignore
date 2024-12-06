@@ -1,0 +1,82 @@
+# Dependências do Node.js
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de ambiente
+.env
+.env.test
+.env.production
+.env.*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+*.log.*
+
+# Diretórios temporários e de cache
+temp/
+tmp/
+.cache/
+.docker/
+build/
+dist/
+out/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.swn
+
+# Configurações de IDEs/editores
+.idea/
+.vscode/
+*.code-workspace
+
+# Git/Miscellaneous
+*.bak
+*.orig
+*.rej
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.dll
+*.exe
+
+# Configurações do sistema operacional
+.vagrant/
+*.pid
+*.seed
+*.zip
+*.gz
+*.tar
+*.tgz
+
+# Arquivos de cobertura de testes
+coverage/
+.nyc_output/
+
+# Pastas de saída/compilação
+lib/
+es/
+.eslintcache
+.prettiercache
+.cache-loader/
+*.tsbuildinfo
+
+# Arquivos de controle de deploy
+.idea/
+.local
+.public
+
+# Certificados e chaves privadas (caso você use HTTPS/SSL em dev)
+*.pem
+*.key
+*.crt
